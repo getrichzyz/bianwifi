@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Data Suplier</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+   
+    <aside class="sidebar">
+      <h2>WiFi Office</h2>
+      <nav>
+        <a href="beranda.html">🏠 Beranda</a>
+        <a href="data-admin.html">👤 Data Admin</a>
+        <a href="data-suplier.html" class="active">🚚 Data Suplier</a>
+        <a href="data-rak.html">🗃️ Data Rak</a>
+        <a href="data-barang.html">📦 Data Barang</a>
+        <a href="data-barang-keluar.html">📤 Barang Keluar</a>
+        <a href="index.html">🚪 Logout</a>
+      </nav>
+    </aside>
+
+    
+    <main class="main-content">
+      <div class="header">
+        <h1>🚚 Data Suplier</h1>
+        <button id="tambahBtn" class="btn-primary">+ Tambah Suplier</button>
+      </div>
+
+      <table id="tabel-suplier">
+        <thead>
+          <tr>
+            <th>No</th>
+            <th>Nama Suplier</th>
+            <th>Kontak</th>
+            <th>Alamat</th>
+            <th>Aksi</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </main>
+  </div>
+
+  
+  <div id="modal" class="modal hidden">
+    <div class="modal-content">
+      <h2>Tambah Suplier</h2>
+      <form id="formSuplier">
+        <label>Nama:</label>
+        <input type="text" id="namaSuplier" required />
+
+        <label>Kontak:</label>
+        <input type="text" id="kontakSuplier" required />
+
+        <label>Alamat:</label>
+        <input type="text" id="alamatSuplier" required />
+
+        <div class="modal-buttons">
+          <button type="button" id="simpanBtn" class="btn-primary">Simpan</button>
+          <button type="button" id="batalBtn" class="btn-secondary">Batal</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="suplier-script.js"></script>
+</body>
+</html>

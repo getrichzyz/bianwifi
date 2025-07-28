@@ -1,0 +1,61 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Beranda - Perkantoran WiFi</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <aside class="sidebar">
+      <h2>MENU</h2>
+      <nav>
+        <a href="beranda.html" class="active">Beranda</a>
+        <a href="data-admin.html">Data Admin</a>
+        <a href="data-suplier.html">Data Suplier</a>
+        <a href="data-rak.html">Data Rak</a>
+        <a href="data-barang.html">Data Barang</a>
+        <a href="data-barang-keluar.html">Data Barang Keluar</a>
+        <a href="index.html" class="logout">Logout</a>
+      </nav>
+    </aside>
+
+    <main class="main-content">
+      <h1>Dashboard Perkantoran WiFi</h1>
+      <div class="dashboard">
+        <div class="card admin">
+          <div class="icon">👤</div>
+          <div class="label">Total Admin</div>
+          <div id="adminCount" class="count">0</div>
+        </div>
+        <div class="card suplier">
+          <div class="icon">📦</div>
+          <div class="label">Total Suplier</div>
+          <div id="suplierCount" class="count">0</div>
+        </div>
+        <div class="card rak">
+          <div class="icon">🗄️</div>
+          <div class="label">Total Rak</div>
+          <div id="rakCount" class="count">0</div>
+        </div>
+        <div class="card barang">
+          <div class="icon">🛒</div>
+          <div class="label">Total Barang</div>
+          <div id="barangCount" class="count">0</div>
+        </div>
+        <div class="card keluar">
+          <div class="icon">📤</div>
+          <div class="label">Barang Keluar</div>
+          <div id="barangKeluarCount" class="count">0</div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="beranda-script.js"></script>
+  
+  
+</body>
+</html>

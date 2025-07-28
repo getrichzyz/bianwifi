@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Data Rak</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    
+    <aside class="sidebar">
+      <h2>WiFi Office</h2>
+      <nav>
+        <a href="beranda.html">🏠 Beranda</a>
+        <a href="data-admin.html">👤 Data Admin</a>
+        <a href="data-suplier.html">🚚 Data Suplier</a>
+        <a href="data-rak.html" class="active">🗃️ Data Rak</a>
+        <a href="data-barang.html">📦 Data Barang</a>
+        <a href="data-barang-keluar.html">📤 Barang Keluar</a>
+        <a href="index.html">🚪 Logout</a>
+      </nav>
+    </aside>
+
+   
+    <main class="main-content">
+      <div class="header">
+        <h1>🗃️ Data Rak</h1>
+        <button id="tambahBtn" class="btn-primary">+ Tambah Rak</button>
+      </div>
+
+      <table id="tabel-rak">
+        <thead>
+          <tr>
+            <th>No</th>
+            <th>Kode Rak</th>
+            <th>Lokasi</th>
+            <th>Keterangan</th>
+            <th>Aksi</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </main>
+  </div>
+
+
+  <div id="modal" class="modal hidden">
+    <div class="modal-content">
+      <h2>Tambah Rak</h2>
+      <form id="formRak">
+        <label>Kode Rak:</label>
+        <input type="text" id="kodeRak" required />
+
+        <label>Lokasi:</label>
+        <input type="text" id="lokasiRak" required />
+
+        <label>Keterangan:</label>
+        <input type="text" id="ketRak" required />
+
+        <div class="modal-buttons">
+          <button type="button" id="simpanBtn" class="btn-primary">Simpan</button>
+          <button type="button" id="batalBtn" class="btn-secondary">Batal</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="rak-script.js"></script>
+</body>
+</html>
