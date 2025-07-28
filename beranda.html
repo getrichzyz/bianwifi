@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -18,34 +17,34 @@
         <a href="data-rak.html">Data Rak</a>
         <a href="data-barang.html">Data Barang</a>
         <a href="data-barang-keluar.html">Data Barang Keluar</a>
-        <a href="index.html" class="logout">Logout</a>
+        <a href="#" id="logoutBtn" class="logout">Logout</a>
       </nav>
     </aside>
 
     <main class="main-content">
       <h1>Dashboard Perkantoran WiFi</h1>
       <div class="dashboard">
-        <div class="card admin">
+        <div class="card admin" onclick="window.location.href='data-admin.html'">
           <div class="icon">👤</div>
           <div class="label">Total Admin</div>
           <div id="adminCount" class="count">0</div>
         </div>
-        <div class="card suplier">
+        <div class="card suplier" onclick="window.location.href='data-suplier.html'">
           <div class="icon">📦</div>
           <div class="label">Total Suplier</div>
           <div id="suplierCount" class="count">0</div>
         </div>
-        <div class="card rak">
+        <div class="card rak" onclick="window.location.href='data-rak.html'">
           <div class="icon">🗄️</div>
           <div class="label">Total Rak</div>
           <div id="rakCount" class="count">0</div>
         </div>
-        <div class="card barang">
+        <div class="card barang" onclick="window.location.href='data-barang.html'">
           <div class="icon">🛒</div>
           <div class="label">Total Barang</div>
           <div id="barangCount" class="count">0</div>
         </div>
-        <div class="card keluar">
+        <div class="card keluar" onclick="window.location.href='data-barang-keluar.html'">
           <div class="icon">📤</div>
           <div class="label">Barang Keluar</div>
           <div id="barangKeluarCount" class="count">0</div>
@@ -55,7 +54,5 @@
   </div>
 
   <script src="beranda-script.js"></script>
-  
-  
 </body>
 </html>
