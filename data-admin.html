@@ -8,7 +8,8 @@
 </head>
 <body>
   <div class="container">
-  
+
+   
     <aside class="sidebar">
       <h2>WiFi Office</h2>
       <nav>
@@ -22,13 +23,14 @@
       </nav>
     </aside>
 
- 
+    
     <main class="main-content">
       <div class="header">
         <h1>👤 Data Admin</h1>
         <button id="tambahBtn" class="btn-primary">+ Tambah Admin</button>
       </div>
 
+    
       <table id="tabel-admin">
         <thead>
           <tr>
@@ -36,6 +38,7 @@
             <th>Nama</th>
             <th>Email</th>
             <th>Username</th>
+            <th>Password</th>
             <th>Aksi</th>
           </tr>
         </thead>
@@ -44,7 +47,7 @@
     </main>
   </div>
 
-
+  
   <div id="modal" class="modal hidden">
     <div class="modal-content">
       <h2>Tambah Admin</h2>
@@ -57,6 +60,9 @@
 
         <label>Username:</label>
         <input type="text" id="usernameAdmin" required />
+
+        <label>Password:</label>
+        <input type="text" id="passwordAdmin" required />
 
         <div class="modal-buttons">
           <button type="button" id="simpanBtn" class="btn-primary">Simpan</button>
