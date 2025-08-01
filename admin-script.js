@@ -1,104 +1,123 @@
-const BIN_ID = "6887830c7b4b8670d8a8a53b";
-const API_KEY = "$2a$10$JCbX6d8rVbDg4zI0.fjTQeOyJ/A8HwoQ/3QW9qAkSupc4MAb7GWJO";
-const BASE_URL = `https://api.jsonbin.io/v3/b/${BIN_ID}`;
+const binId = "6887830c7b4b8670d8a8a53b";
+const apiKey = "$2a$10$JCbX6d8rVbDg4zI0.fjTQeOyJ/A8HwoQ/3QW9qAkSupc4MAb7GWJO";
+const url = `https://api.jsonbin.io/v3/b/${binId}`;
 const headers = {
   "Content-Type": "application/json",
-  "X-Master-Key": API_KEY,
+  "X-Master-Key": apiKey
 };
 
-let dataAdmin = [];
-
-const tabelBody = document.querySelector("#tabel-admin tbody");
+const tbody = document.querySelector("#tabel-admin tbody");
 const tambahBtn = document.getElementById("tambahBtn");
 const modal = document.getElementById("modal");
-const simpanBtn = document.getElementById("simpanBtn");
 const batalBtn = document.getElementById("batalBtn");
+const simpanBtn = document.getElementById("simpanBtn");
 
 
-async function getDataAdmin() {
+const namaInput = document.getElementById("namaAdmin");
+const emailInput = document.getElementById("emailAdmin");
+const usernameInput = document.getElementById("usernameAdmin");
+const passwordInput = document.getElementById("passwordAdmin");
+
+
+
+
+tambahBtn.addEventListener("click", () => {
+  modal.classList.remove("hidden");
+  namaInput.value = "";
+  emailInput.value = "";
+  usernameInput.value = "";
+  passwordInput.value = "";
+});
+
+
+batalBtn.addEventListener("click", () => {
+  modal.classList.add("hidden");
+});
+
+
+async function loadData() {
   try {
-    const res = await fetch(`${BASE_URL}/latest`, { headers });
+    const res = await fetch(`${url}/latest`, { headers });
     const json = await res.json();
-    return json.record || [];
+    const data = json.record;
+
+    tbody.innerHTML = "";
+    data.forEach((admin, i) => {
+      const tr = document.createElement("tr");
+
+      tr.innerHTML = `
+        <td>${i + 1}</td>
+        <td>${admin.nama}</td>
+        <td>${admin.gmail}</td>
+        <td>${admin.username}</td>
+        <td>${admin.password}</td>
+        <td><span class="hapus-btn" onclick="hapusData(${i})">🗑️</span></td>
+      `;
+
+      tbody.appendChild(tr);
+    });
+
   } catch (err) {
-    console.error("Gagal ambil data:", err);
-    return [];
+    console.error("Gagal memuat data:", err);
   }
 }
 
 
-async function saveDataAdmin(data) {
+simpanBtn.addEventListener("click", async () => {
+  const nama = namaInput.value.trim();
+  const gmail = emailInput.value.trim();
+  const username = usernameInput.value.trim();
+  const password = passwordInput.value.trim();
+
+  if (!nama || !gmail || !username || !password) {
+    alert("Semua field wajib diisi!");
+    return;
+  }
+
   try {
-    await fetch(BASE_URL, {
+    const res = await fetch(`${url}/latest`, { headers });
+    const json = await res.json();
+    const data = json.record;
+
+    const newAdmin = { nama, gmail, username, password };
+    data.push(newAdmin);
+
+    await fetch(url, {
       method: "PUT",
       headers,
-      body: JSON.stringify(data),
+      body: JSON.stringify(data)
     });
-  } catch (err) {
-    console.error("Gagal simpan data:", err);
-  }
-}
 
-
-function renderTable() {
-  tabelBody.innerHTML = "";
-  dataAdmin.forEach((admin, index) => {
-    const row = document.createElement("tr");
-    row.innerHTML = `
-      <td>${index + 1}</td>
-      <td>${admin.nama}</td>
-      <td>${admin.email}</td>
-      <td>${admin.username}</td>
-      <td><button class="hapus-btn" data-index="${index}">🗑️</button></td>
-    `;
-    tabelBody.appendChild(row);
-  });
-}
-
-
-async function loadAdmin() {
-  dataAdmin = await getDataAdmin();
-  renderTable();
-}
-
-
-tambahBtn.onclick = () => {
-  modal.classList.remove("hidden");
-};
-
-
-simpanBtn.onclick = async () => {
-  const nama = document.getElementById("namaAdmin").value.trim();
-  const email = document.getElementById("emailAdmin").value.trim();
-  const username = document.getElementById("usernameAdmin").value.trim();
-
-  if (nama && email && username) {
-    dataAdmin.push({ nama, email, username });
-    await saveDataAdmin(dataAdmin);
-    renderTable();
     modal.classList.add("hidden");
-    document.getElementById("formAdmin").reset();
-  } else {
-    alert("Semua kolom wajib diisi.");
-  }
-};
+    loadData();
 
-
-batalBtn.onclick = () => {
-  modal.classList.add("hidden");
-  document.getElementById("formAdmin").reset();
-};
-
-
-tabelBody.addEventListener("click", async (e) => {
-  if (e.target.classList.contains("hapus-btn")) {
-    const index = e.target.dataset.index;
-    if (confirm("Yakin ingin menghapus data ini?")) {
-      dataAdmin.splice(index, 1);
-      await saveDataAdmin(dataAdmin);
-      renderTable();
-    }
+  } catch (err) {
+    console.error("Gagal menyimpan data:", err);
   }
 });
 
-document.addEventListener("DOMContentLoaded", loadAdmin);
+
+async function hapusData(index) {
+  if (!confirm("Yakin ingin menghapus data ini?")) return;
+
+  try {
+    const res = await fetch(`${url}/latest`, { headers });
+    const json = await res.json();
+    const data = json.record;
+
+    data.splice(index, 1);
+
+    await fetch(url, {
+      method: "PUT",
+      headers,
+      body: JSON.stringify(data)
+    });
+
+    loadData();
+  } catch (err) {
+    console.error("Gagal menghapus data:", err);
+  }
+}
+
+
+loadData();
